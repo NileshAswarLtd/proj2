@@ -12,11 +12,8 @@ app = Flask(__name__)
 def get_name():
     # Get the 'name' parameter from the URL
     name = request.args.get('name')
-
-    # If no name is provided, return a 400 Bad Request
     if not name:
         abort(400, description="Name parameter is missing")
-
     # Define the file path
     file_path = f'names/{name}'
 
