@@ -1,7 +1,7 @@
-# Write a Python code with a get name() function that gets the name parameter from the URL by using request module by importing flask and opens the file names/name returning a file object
+# NL Prompt: Write a Python code with a get name() function that gets the name parameter from the URL by using request module by importing flask and opens the file names/name returning a file object
 
 
-#http://localhost:5000/get_name?name=example.txt
+#e. g. URL : http://localhost:5000/get_name?name=example.txt
 
 from flask import Flask, request, abort
 
@@ -21,11 +21,9 @@ def get_name():
     file_path = f'names/{name}'
 
     try:
-        # Open the file and return its content
         with open(file_path, 'r') as file:
-            return file.read()  # Return the file content as a string response
+            return file.read() 
     except FileNotFoundError:
-        # If the file does not exist, return a 404 error
         abort(404, description=f"File '{name}' not found")
 
 # Run the Flask app
