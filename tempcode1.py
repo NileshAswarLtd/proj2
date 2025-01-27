@@ -1,23 +1,33 @@
 import re
 
-def reverse_words_with_punctuation(text):
-    """
-    Reverses the order of words with punctuation and keeps the punctuation in place.
+def is_prime(n):
+    """Check whether the integer n is prime."""
+    if n <= 1:
+        return False
+    elif n == 2:
+        return True
+    elif n % 2 == 0:
+        return False
 
-    Args:
-        text (str): The input text to be processed.
+    # Only test factors up to sqrt(n) (since larger factors would have smaller co-factors)
+    for i in range(3, int(n**0.5)+1, 2):
+        if n % i == 0:
+            return False
+    return True
 
-    Returns:
-        str: The processed text with reversed word order.
-    """
-    # Remove punctuation
-    no_punct = re.sub(r'[^\w\s]', '', text)
+def find_primes_in_string(input_str):
+    """Find all prime numbers in the given string."""
+    # Use regex to extract numbers from the string
+    numbers = re.findall(r'\d+', input_str)
+    
+    primes = []
+    for num_str in numbers:
+        if is_prime(int(num_str)):
+            primes.append(int(num_str))
+            
+    return primes
 
-    # Reverse words
-    reversed_no_punct = ' '.join(reversed(no_punct.split()))
+input_string = input("Enter a string: ")
+prime_numbers = find_primes_in_string(input_string)
 
-    return reversed_no_punct
-
-# Test the function
-text = input("Enter a string: ")
-print("Processed Text:", reverse_words_with_punctuation(text))
+print(f"Prime numbers found in the string: {prime_numbers}")
